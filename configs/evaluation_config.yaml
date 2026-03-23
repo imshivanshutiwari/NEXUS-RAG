@@ -1,0 +1,13 @@
+ragas:
+  faithfulness_threshold: 0.7
+  relevancy_threshold: 0.6
+  precision_threshold: 0.5
+  recall_threshold: 0.5
+
+healing:
+  max_attempts: 3
+  strategies:
+    - reformulate
+    - expand
+    - switch_mode
+    - fallback_prompt

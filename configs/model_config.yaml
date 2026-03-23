@@ -1,0 +1,12 @@
+llm:
+  provider: aws_bedrock
+  model_id: anthropic.claude-3-sonnet-20240229-v1:0
+  max_tokens: 2048
+  temperature: 0.1
+  region: us-east-1
+
+embeddings:
+  primary: cohere
+  model: embed-english-v3.0
+  dimensions: 1024
+  fallback: multi-qa-mpnet-base-v2

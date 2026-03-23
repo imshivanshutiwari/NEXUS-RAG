@@ -1,0 +1,19 @@
+hybrid:
+  dense_weight: 0.7
+  sparse_weight: 0.3
+  rrf_k: 60
+  top_k: 20
+
+reranking:
+  crossencoder_model: cross-encoder/ms-marco-MiniLM-L-6-v2
+  colbert_top_k: 5
+  final_top_k: 5
+
+query_expansion:
+  hyde_enabled: true
+  multi_query_n: 3
+
+hnsw:
+  m: 16
+  ef_construction: 64
+  ef_search: 100
