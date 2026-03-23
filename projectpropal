@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Bebas+Neue&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#06080f;color:#e2e8f0;font-family:'JetBrains Mono',monospace;padding:20px}
+  .banner{background:repeating-linear-gradient(45deg,#06040f,#06040f 10px,#090612 10px,#090612 20px);border:2px solid #7f77dd;border-radius:8px;padding:16px 24px;margin-bottom:18px;text-align:center;position:relative;overflow:hidden}
+  .banner::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#7f77dd,#afa9ec,#7f77dd,transparent)}
+  .banner h1{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#afa9ec;letter-spacing:5px}
+  .banner p{font-size:10px;color:#2d2a55;margin-top:4px;letter-spacing:3px}
+  .box{background:#080a14;border:1px solid #141830;border-radius:10px;overflow:hidden;margin-bottom:14px}
+  .box-header{background:#0a0c18;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #141830}
+  .box-header span{font-size:11px;color:#22284a;letter-spacing:1px}
+  .copy-btn{background:#534ab7;color:#fff;border:none;padding:8px 22px;border-radius:5px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:1px;transition:all .2s}
+  .copy-btn:hover{background:#7f77dd;transform:scale(1.03)}
+  .content{padding:20px;font-size:11.5px;line-height:1.85;white-space:pre-wrap;max-height:700px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#534ab7 #080a14}
+  .content::-webkit-scrollbar{width:5px}
+  .content::-webkit-scrollbar-thumb{background:#534ab7;border-radius:3px}
+  .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .stat{flex:1;min-width:80px;background:#0a0c18;border:1px solid #141830;border-radius:6px;padding:10px;text-align:center}
+  .stat strong{display:block;color:#afa9ec;font-size:20px;margin-bottom:2px}
+  .stat span{font-size:10px;color:#22284a}
+</style>
+</head>
+<body>
+<div class="banner">
+  <h1>⚡ NEXUS-RAG — COPILOT NUCLEAR PROMPT ⚡</h1>
+  <p>PRODUCTION AGENTIC RAG · LANGGRAPH + AWS BEDROCK + PGVECTOR · TECH OPS CENTER · REAL DATA · MAX LEVEL</p>
+</div>
+<div class="box">
+  <div class="box-header">
+    <span>nexus_rag_copilot_nuclear_v1.prompt</span>
+    <button class="copy-btn" onclick="copyAll()" id="btn">⎘ COPY FULL PROMPT</button>
+  </div>
+  <div class="content" id="pc">
+<span style="color:#ff2244;font-weight:700">╔══════════════════════════════════════════════════════════════════════╗
+║     GITHUB COPILOT — IRON PROTOCOL · NEXUS-RAG                        ║
+║                                                                        ║
+║  YOU ARE A PRINCIPAL ENGINEER + AI ARCHITECT + MLOPS SPECIALIST.     ║
+║  BUILD AS IF THIS SHIPS TO PRODUCTION AT A REAL AI COMPANY.          ║
+║                                                                        ║
+║  HARD FAILURES — ABSOLUTE ZERO TOLERANCE:                             ║
+║  ✗ stub / TODO / pass / NotImplemented / placeholder anywhere         ║
+║  ✗ mock / fake / random / hardcoded data used as real data            ║
+║  ✗ terminal-only output — everything in browser dashboard             ║
+║  ✗ simplified algorithm — always use maximum complexity               ║
+║  ✗ fewer than 22 visualizations in dashboard                          ║
+║  ✗ agent implementing differently than what prompt says               ║
+║  ✗ downgrading any tool/technique/algo specified below                ║
+║  ✗ stopping before final checklist is 100% green                      ║
+╚══════════════════════════════════════════════════════════════════════╝</span>
+
+<span style="color:#ffaa00;font-weight:700">═══════════════════════════════════════════
+SECTION 0 — ABSOLUTE IRON RULES
+═══════════════════════════════════════════</span>
+
+RULE 1 — BUILD EXACTLY WHAT IS WRITTEN. NO CREATIVITY.
+  Every line of this prompt is a direct order.
+  Agent cannot:
+    - Simplify any component
+    - Replace any library with an "easier" alternative
+    - Skip any specified algorithm
+    - Add shortcuts "for now"
+    - Say "I'll use X instead of Y"
+  Prompt = Law. Every deviation = HARD FAILURE.
+
+RULE 2 — MAXIMUM TECH COMPLEXITY. NO DOWNGRADE.
+  Every algorithm at maximum sophistication:
+  ✦ RAG: Hybrid search (dense BM25 + sparse vector) NOT simple vector search
+  ✦ LangGraph: Full StateGraph with 6 nodes + conditional edges NOT linear chain
+  ✦ Embeddings: multi-qa-mpnet-base-v2 + late interaction ColBERT NOT basic embeddings
+  ✦ Reranking: Cross-encoder ms-marco-MiniLM-L-6-v2 NOT no reranking
+  ✦ Evaluation: RAGAS (faithfulness+answer_relevancy+context_precision+recall) NOT manual
+  ✦ Self-healing: Automatic query reformulation + fallback pipeline NOT simple retry
+  ✦ Drift detection: Evidently AI on embedding distributions NOT manual monitoring
+  ✦ Vector DB: pgvector with HNSW index NOT flat L2 index
+  Any downgrade of above = HARD FAILURE
+
+RULE 3 — REAL DATA ONLY. ZERO EXCEPTIONS.
+  Real data sources listed in Section 4.
+  BANNED: Lorem ipsum, hardcoded Q&A pairs, fake documents,
+          random embeddings, placeholder PDFs, mock API responses
+
+RULE 4 — FILE CREATION TOOL ONLY
+  Create EVERY file using direct file creation tool.
+  NEVER use terminal echo/cat/printf to write files.
+  Terminal ONLY for: pip install, python verify, pytest, git
+
+RULE 5 — VERIFY BEFORE NEXT
+  After every .py file: python filename.py → exit 0
+  Fix ALL errors before moving to next file.
+
+RULE 6 — NO TERMINAL RUNS
+  python dashboard/app.py → browser opens localhost:8050 AUTO
+  import webbrowser; webbrowser.open("http://localhost:8050")
+  make run → same. ALL output in Dash UI. Never print-only.
+
+RULE 7 — 30 TESTS ALL PASS
+  pytest tests/ -v → 30/30 PASSED
+  No assert True. Real objects. Real data. Real assertions.
+
+RULE 8 — FULL REAL INTEGRATION
+  pipeline/main.py MUST import from ALL:
+    agents/ ingestion/ retrieval/ evaluation/ 
+    monitoring/ dashboard/ streaming/
+  If module not actually used by another = fake = FAILED
+
+RULE 9 — EXACT COMMIT
+  git commit -m "feat: complete NEXUS-RAG
+
+   - LangGraph 6-node agentic RAG (Router+Retriever+Reranker+Generator+Evaluator+Healer)
+   - Hybrid search: BM25 + pgvector HNSW dense retrieval
+   - ColBERT late interaction reranking
+   - RAGAS evaluation: faithfulness+relevancy+precision+recall
+   - Self-healing: auto query reformulation + fallback pipeline
+   - Evidently AI embedding drift detection
+   - Real data: Wikipedia+ArXiv+SEC EDGAR+PubMed+CommonCrawl
+   - AWS Bedrock Claude-3 + Cohere Embed v3
+   - 22 visualizations in Tech Ops Center Dash UI
+   - Zero fake data, browser auto-opens on make run
+   - 30 pytest tests passing + CI/CD green"
+  git push origin main
+
+<span style="color:#ffaa00;font-weight:700">═══════════════════════════════════════════
+SECTION 1 — PROJECT IDENTITY
+═══════════════════════════════════════════</span>
+
+Project  : NEXUS-RAG
+Subtitle : Production-Grade Multi-Modal Agentic RAG System
+           with Self-Healing Pipelines, Hybrid Retrieval,
+           RAGAS Evaluation and Real-Time Drift Monitoring
+Language : Python 3.11
+Repo     : nexus-rag
+UI       : Plotly Dash Tech Ops Center (dark purple theme)
+LLM      : AWS Bedrock Claude-3-Sonnet + Cohere Embed v3
+VectorDB : PostgreSQL + pgvector (HNSW index)
+
+<span style="color:#ffaa00;font-weight:700">═══════════════════════════════════════════
+SECTION 2 — EXACT FOLDER STRUCTURE (88 FILES)
+═══════════════════════════════════════════</span>
+
+<span style="color:#88aaff">nexus-rag/
+├── README.md
+├── requirements.txt
+├── setup.py
+├── Makefile
+├── .env.example
+├── .gitignore
+├── docker-compose.yml           ← PostgreSQL + pgvector
+│
+├── configs/
+│   ├── pipeline_config.yaml     ← core pipeline params
+│   ├── model_config.yaml        ← LLM + embedding settings
+│   ├── retrieval_config.yaml    ← search + reranking params
+│   ├── evaluation_config.yaml   ← RAGAS metrics config
+│   └── monitoring_config.yaml   ← drift detection config
+│
+├── data/
+│   ├── __init__.py
+│   ├── fetchers/
+│   │   ├── __init__.py
+│   │   ├── wikipedia_fetcher.py    ← Real Wikipedia API
+│   │   ├── arxiv_fetcher.py        ← Real ArXiv API
+│   │   ├── sec_edgar_fetcher.py    ← Real SEC EDGAR API
+│   │   ├── pubmed_fetcher.py       ← Real PubMed E-utilities
+│   │   └── commoncrawl_fetcher.py  ← Real CommonCrawl WET files
+│   └── processors/
+│       ├── __init__.py
+│       ├── pdf_processor.py        ← PyMuPDF + layout analysis
+│       ├── text_chunker.py         ← Semantic chunking
+│       ├── metadata_extractor.py   ← Title, date, source
+│       └── document_store.py       ← Document lifecycle mgmt
+│
+├── ingestion/
+│   ├── __init__.py
+│   ├── pipeline.py              ← Full ingestion pipeline
+│   ├── embedder.py              ← Cohere Embed v3 + local fallback
+│   ├── indexer.py               ← pgvector HNSW indexing
+│   ├── bm25_indexer.py          ← BM25 sparse index (rank_bm25)
+│   └── deduplicator.py          ← MinHash LSH deduplication
+│
+├── retrieval/
+│   ├── __init__.py
+│   ├── hybrid_retriever.py      ← BM25 + dense + RRF fusion
+│   ├── dense_retriever.py       ← pgvector ANN search
+│   ├── sparse_retriever.py      ← BM25 retrieval
+│   ├── reranker.py              ← CrossEncoder ms-marco reranking
+│   ├── colbert_reranker.py      ← ColBERT late interaction
+│   └── query_expander.py        ← HyDE + multi-query expansion
+│
+├── agents/
+│   ├── __init__.py
+│   ├── state.py                 ← RAGState TypedDict
+│   ├── tools.py                 ← All @tool functions
+│   ├── router_agent.py          ← Query routing + classification
+│   ├── retriever_agent.py       ← Orchestrates hybrid retrieval
+│   ├── reranker_agent.py        ← Reranking + filtering
+│   ├── generator_agent.py       ← LLM generation (Bedrock)
+│   ├── evaluator_agent.py       ← RAGAS inline evaluation
+│   ├── healer_agent.py          ← Self-healing + reformulation
+│   └── graph.py                 ← LangGraph StateGraph (6 nodes)
+│
+├── generation/
+│   ├── __init__.py
+│   ├── bedrock_client.py        ← AWS Bedrock Claude-3-Sonnet
+│   ├── prompt_builder.py        ← Dynamic prompt construction
+│   ├── citation_builder.py      ← Source citation formatter
+│   └── response_validator.py    ← Hallucination detection
+│
+├── evaluation/
+│   ├── __init__.py
+│   ├── ragas_evaluator.py       ← RAGAS all 4 metrics
+│   ├── faithfulness.py          ← Faithful to context check
+│   ├── answer_relevancy.py      ← Answer relevance scorer
+│   ├── context_metrics.py       ← Precision + recall
+│   └── benchmark_runner.py      ← Full benchmark pipeline
+│
+├── monitoring/
+│   ├── __init__.py
+│   ├── drift_detector.py        ← Evidently embedding drift
+│   ├── latency_tracker.py       ← Per-stage latency logging
+│   ├── quality_monitor.py       ← RAGAS score monitoring
+│   ├── alert_manager.py         ← Threshold-based alerts
+│   └── self_healer.py           ← Auto-retrain + re-index trigger
+│
+├── streaming/
+│   ├── __init__.py
+│   ├── query_streamer.py        ← SSE streaming responses
+│   ├── pipeline_events.py       ← Pipeline stage events
+│   └── websocket_hub.py         ← WebSocket broadcast hub
+│
+├── pipeline/
+│   ├── __init__.py
+│   └── main.py                  ← End-to-end pipeline entry
+│
+├── api/
+│   ├── __init__.py
+│   ├── server.py                ← FastAPI server
+│   ├── routes/
+│   │   ├── query.py             ← /query endpoint
+│   │   ├── ingest.py            ← /ingest endpoint
+│   │   ├── evaluate.py          ← /evaluate endpoint
+│   │   └── monitor.py           ← /monitor endpoint
+│   └── schemas.py               ← Pydantic request/response
+│
+├── dashboard/
+│   ├── __init__.py
+│   ├── app.py                   ← Opens browser AUTO
+│   ├── theme.py                 ← Tech Ops color constants
+│   ├── pages/
+│   │   ├── __init__.py
+│   │   ├── rag_ops.py           ← Main ops page (VIZ 01-07)
+│   │   ├── retrieval_lab.py     ← Retrieval analysis (08-12)
+│   │   ├── agent_flow.py        ← LangGraph monitor (13-16)
+│   │   ├── evaluation_hub.py    ← RAGAS metrics (17-19)
+│   │   └── drift_monitor.py     ← Drift + health (20-22)
+│   └── callbacks/
+│       ├── __init__.py
+│       ├── query_callbacks.py
+│       └── monitor_callbacks.py
+│
+├── utils/
+│   ├── __init__.py
+│   ├── logger.py
+│   ├── config_loader.py
+│   ├── checkpoint.py
+│   └── seed.py
+│
+├── tests/
+│   ├── conftest.py
+│   ├── test_data_fetchers.py
+│   ├── test_ingestion.py
+│   ├── test_retrieval.py
+│   ├── test_agents.py
+│   ├── test_evaluation.py
+│   ├── test_monitoring.py
+│   └── test_api.py
+│
+├── notebooks/
+│   ├── 01_data_exploration.ipynb
+│   ├── 02_retrieval_analysis.ipynb
+│   └── 03_evaluation_results.ipynb
+│
+├── assets/
+│   ├── architecture_diagram.png
+│   └── results/
+│
+└── .github/
+    └── workflows/
+        ├── ci.yml
+        └── lint.yml</span>
+
+<span style="color:#ffaa00;font-weight:700">═══════════════════════════════════════════
+SECTION 3 — REQUIREMENTS (EXACT PINS)
+═══════════════════════════════════════════</span>
+
+<span style="color:#cc88ff">langchain==0.1.20
+langgraph==0.0.55
+langchain-aws==0.1.6
+langchain-cohere==0.1.4
+langchain-community==0.0.38
+ragas==0.1.9
+sentence-transformers==2.7.0
+rank-bm25==0.2.2
+psycopg2-binary==2.9.9
+pgvector==0.2.5
+sqlalchemy==2.0.30
+fastapi==0.111.0
+uvicorn==0.29.0
+boto3==1.34.96
+cohere==5.5.0
+evidently==0.4.26
+mlflow==2.13.0
+wandb==0.16.6
+plotly==5.22.0
+dash==2.17.0
+dash-bootstrap-components==1.6.0
+dash-cytoscape==0.3.0
+numpy==1.26.4
+scipy==1.13.0
+pandas==2.2.2
+tqdm==4.66.4
+pydantic==2.7.1
+pyyaml==6.0.1
+python-dotenv==1.0.1
+requests==2.31.0
+aiohttp==3.9.5
+pytest==8.2.0
+black==24.4.2
+flake8==7.0.0
+jupyter==1.0.0
+PyMuPDF==1.24.3
+datasketch==1.6.4
+colbert-ai==0.2.19
+httpx==0.27.0
+sse-starlette==2.1.0
+websockets==12.0
+arxiv==2.1.0
+biopython==1.83
+webbrowser</span>
+
+docker-compose.yml:
+  services:
+    postgres:
+      image: pgvector/pgvector:pg16
+      environment:
+        POSTGRES_DB: nexusrag
+        POSTGRES_USER: nexus
+        POSTGRES_PASSWORD: nexuspass
+      ports: ["5432:5432"]
+      volumes: ["pgdata:/var/lib/postgresql/data"]
+
+<span style="color:#ffaa00;font-weight:700">═══════════════════════════════════════════
+SECTION 4 — REAL DATA SOURCES
+═══════════════════════════════════════════</span>
+
+<span style="color:#44aaff;font-weight:700">── data/fetchers/wikipedia_fetcher.py ──</span>
+class WikipediaFetcher:
+  REAL API: https://en.wikipedia.org/w/api.php
+  
+  methods:
+    fetch_articles(topics: List[str],
+                   n_per_topic: int = 50) -> List[Document]
+      params: action=query, list=search, srsearch=topic
+              prop=extracts, exintro=True, explaintext=True
+      Returns: List[Document(content, title, url, date)]
+    fetch_full_article(page_id: str) -> Document
+    fetch_category(category: str, depth: int = 2) -> List[Document]
+    cache_locally(path='data/cache/wikipedia/')
+
+<span style="color:#44aaff;font-weight:700">── data/fetchers/arxiv_fetcher.py ──</span>
+class ArXivFetcher:
+  REAL: import arxiv; arxiv.Client()
+  
+  methods:
+    fetch_papers(query: str,
+                 max_results: int = 200,
+                 categories=['cs.AI','cs.LG','cs.CL']) -> List[Document]
+      search = arxiv.Search(query=query,
+                            max_results=max_results,
+                            sort_by=arxiv.SortCriterion.SubmittedDate)
+      Returns: [Document(abstract+full_text, title, authors, date, arxiv_id)]
+    download_pdf(arxiv_id: str) -> bytes  ← PyMuPDF parse
+    fetch_recent(days=30) -> List[Document]
+
+<span style="color:#44aaff;font-weight:700">── data/fetchers/sec_edgar_fetcher.py ──</span>
+class SECEDGARFetcher:
+  REAL API: https://data.sec.gov/submissions/
+            https://efts.sec.gov/LATEST/search-index?
+  
+  methods:
+    fetch_10k_filings(ticker: str,
+                      n: int = 5) -> List[Document]
+      GET https://data.sec.gov/submissions/CIK{cik}.json
+      Parse filing list → download 10-K text
+    fetch_8k_filings(ticker: str) -> List[Document]
+    search_filings(query: str) -> List[Document]
+      GET https://efts.sec.gov/LATEST/search-index?q={query}
+
+<span style="color:#44aaff;font-weight:700">── data/fetchers/pubmed_fetcher.py ──</span>
+class PubMedFetcher:
+  REAL: NCBI E-utilities API (free, no key needed for basic)
+  BASE: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/
+  
+  methods:
+    search(query: str, retmax: int = 200) -> List[str]
+      GET esearch.fcgi?db=pubmed&term={query}&retmax={n}
+      Returns: List[pmid]
+    fetch_abstracts(pmids: List[str]) -> List[Document]
+      POST efetch.fcgi?db=pubmed&id={pmids}&rettype=abstract
+    fetch_full_text(pmid: str) -> Document
+      via PMC Open Access API
+
+<span style="color:#44aaff;font-weight:700">── data/fetchers/commoncrawl_fetcher.py ──</span>
+class CommonCrawlFetcher:
+  REAL: CommonCrawl Index API
+  API: https://index.commoncrawl.org/
+  
+  methods:
+    search_index(url_pattern: str,
+                 crawl_id: str = 'CC-MAIN-2024-10') -> List[dict]
+      GET http://index.commoncrawl.org/{crawl_id}-index?
+          url={pattern}&output=json
+    fetch_page(record_info: dict) -> Document
+      Byte-range HTTP fetch from S3:
+      GET https://data.commoncrawl.org/{filename}
+          Range: bytes={offset}-{offset+length}
+    fetch_domain_sample(domain: str,
+                        n: int = 100) -> List[Document]
+
+<span style="color:#ffaa00;font-weight:700">═══════════════════════════════════════════
+SECTION 5 — MAX COMPLEXITY SPECS
+═══════════════════════════════════════════</span>
+
+<span style="color:#44aaff;font-weight:700">── ingestion/embedder.py ──</span>
+class DocumentEmbedder:
+  Primary: Cohere Embed v3 (cohere.embed, model="embed-english-v3.0")
+  Fallback: sentence-transformers multi-qa-mpnet-base-v2
+  
+  methods:
+    embed_documents(docs: List[str]) -> np.ndarray
+      Cohere: co.embed(texts=docs, model="embed-english-v3.0",
+                       input_type="search_document")
+      Returns: (N, 1024) float32 array
+    embed_query(query: str) -> np.ndarray
+      input_type="search_query"
+    embed_batch(docs, batch_size=96) -> np.ndarray
+      Process in batches, track progress
+    compute_similarity(a, b) -> float
+      cosine similarity via scipy
+
+<span style="color:#44aaff;font-weight:700">── ingestion/indexer.py ──</span>
+class PGVectorIndexer:
+  PostgreSQL + pgvector with HNSW index.
+  HNSW params: m=16, ef_construction=64
+  Distance: cosine
+  
+  schema:
+    CREATE EXTENSION IF NOT EXISTS vector;
+    CREATE TABLE documents (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      content TEXT NOT NULL,
+      embedding vector(1024),
+      metadata JSONB,
+      source VARCHAR(50),
+      created_at TIMESTAMP DEFAULT NOW(),
+      chunk_index INTEGER,
+      doc_id VARCHAR(255)
+    );
+    CREATE INDEX ON documents USING hnsw
+      (embedding vector_cosine_ops)
+      WITH (m=16, ef_construction=64);
+    
+  methods:
+    insert_documents(docs, embeddings)
+    similarity_search(query_vec, k=20,
+                      filter_metadata=None) -> List[Document]
+    hybrid_search(query_vec, bm25_scores,
+                  k=10) -> List[Document]  ← RRF fusion
+
+<span style="color:#44aaff;font-weight:700">── retrieval/hybrid_retriever.py ──</span>
+class HybridRetriever:
+  Combines BM25 sparse + pgvector dense via RRF fusion.
+  
+  Reciprocal Rank Fusion:
+    score(d) = Σ 1/(k + rank_i(d))
+    k = 60 (standard RRF constant)
+    
+  methods:
+    retrieve(query: str, k: int = 20) -> List[ScoredDocument]
+      1. dense_results = dense_retriever.search(query, k*2)
+      2. sparse_results = bm25_retriever.search(query, k*2)
+      3. fused = rrf_fusion(dense_results, sparse_results, k=60)
+      4. return top-k fused results
+    rrf_fusion(dense, sparse, k=60) -> List[ScoredDocument]
+    update_weights(dense_w: float, sparse_w: float)
+      ← adaptive weighting based on query type
+
+<span style="color:#44aaff;font-weight:700">── retrieval/colbert_reranker.py ──</span>
+class ColBERTReranker:
+  Late interaction reranking using ColBERT.
+  
+  ColBERT MaxSim:
+    score(q,d) = Σ_qi max_dj cos(E_q(qi), E_d(dj))
+    
+  methods:
+    rerank(query: str,
+           documents: List[Document],
+           top_k: int = 5) -> List[ScoredDocument]
+      1. Encode query tokens: q_embeddings (Lq, 128)
+      2. Encode doc tokens: d_embeddings (Ld, 128)
+      3. Compute MaxSim for each query token
+      4. Sum MaxSim scores → final score
+    batch_rerank(queries, doc_lists) -> List[List[ScoredDocument]]
+
+<span style="color:#44aaff;font-weight:700">── retrieval/query_expander.py ──</span>
+class QueryExpander:
+  HyDE + Multi-query expansion.
+  
+  HyDE (Hypothetical Document Embeddings):
+    Generate hypothetical answer → embed it → retrieve
+    
+  methods:
+    hyde_expand(query: str) -> str
+      prompt = "Write a passage that answers: {query}"
+      hypothetical_doc = bedrock.generate(prompt)
+      return hypothetical_doc
+    multi_query_expand(query: str,
+                       n: int = 3) -> List[str]
+      prompt = "Generate {n} different versions of: {query}"
+      return parse_list(bedrock.generate(prompt))
+    expand_and_retrieve(query: str) -> List[Document]
+      queries = [query] + multi_query_expand(query)
+      hyde_doc = hyde_expand(query)
+      all_results = []
+      for q in queries:
+        all_results.extend(hybrid_retriever.retrieve(q))
+      return deduplicate_and_rank(all_results)
+
+<span style="color:#44aaff;font-weight:700">── agents/graph.py ── CORE LANGGRAPH</span>
+class NEXUSRAGGraph:
+  LangGraph StateGraph with 6 nodes + conditional edges.
+  
+  RAGState (TypedDict):
+    query: str
+    query_type: str          ← factual/analytical/comparative
+    expanded_queries: List[str]
+    retrieved_docs: List[Document]
+    reranked_docs: List[Document]
+    generated_answer: str
+    citations: List[Citation]
+    ragas_scores: Dict[str, float]
+    healing_attempts: int
+    is_faithful: bool
+    final_answer: str
+    pipeline_trace: List[str]
+    
+  6 Nodes (ALL FULLY IMPLEMENTED):
+  
+  router_node:
+    Input: query
+    Classify query: factual / analytical / comparative / conversational
+    Set retrieval strategy based on type
+    Tools: classify_query, detect_language, extract_entities
+    
+  retriever_node:
+    Input: query + query_type + expanded_queries
+    Run hybrid retrieval (BM25 + pgvector HNSW)
+    Run HyDE + multi-query expansion
+    Collect top-20 candidates
+    Tools: hybrid_search, bm25_search, dense_search
+    
+  reranker_node:
+    Input: retrieved_docs + query
+    CrossEncoder reranking → top 10
+    ColBERT late interaction → top 5
+    Filter by relevance threshold
+    Tools: crossencoder_rerank, colbert_rerank
+    
+  generator_node:
+    Input: reranked_docs + query
+    Build context-aware prompt
+    Call AWS Bedrock Claude-3-Sonnet
+    Extract citations with page/chunk references
+    Tools: build_prompt, call_bedrock, extract_citations
+    
+  evaluator_node:
+    Input: answer + query + context_docs
+    Compute RAGAS: faithfulness, answer_relevancy,
+                   context_precision, context_recall
+    If faithfulness < 0.7 → trigger healer
+    Tools: compute_ragas, check_hallucination
+    
+  healer_node:
+    Input: low-score answer + original query
+    Strategies (in order):
+      1. Query reformulation (rephrase)
+      2. Expand retrieval (k*2)
+      3. Switch retrieval mode (dense-only)
+      4. Use different prompt template
+    max healing_attempts = 3
+    Tools: reformulate_query, expand_retrieval, switch_strategy
+    
+  Conditional Edges:
+    router → retriever (always)
+    retriever → reranker (if docs found)
+    retriever → healer (if no docs found)
+    reranker → generator (always)
+    generator → evaluator (always)
+    evaluator → END (if scores OK)
+    evaluator → healer (if scores low)
+    healer → retriever (retry with new query)
+    healer → END (if max attempts reached)
+
+<span style="color:#44aaff;font-weight:700">── generation/bedrock_client.py ──</span>
+class BedrockClient:
+  AWS Bedrock Claude-3-Sonnet-20240229.
+  
+  methods:
+    generate(prompt: str,
+             max_tokens: int = 2048,
+             temperature: float = 0.1) -> str
+      import boto3
+      client = boto3.client('bedrock-runtime',
+                            region_name='us-east-1')
+      response = client.invoke_model(
+        modelId='anthropic.claude-3-sonnet-20240229-v1:0',
+        body=json.dumps({
+          "anthropic_version": "bedrock-2023-05-31",
+          "max_tokens": max_tokens,
+          "temperature": temperature,
+          "messages": [{"role":"user","content":prompt}]
+        })
+      )
+      return json.loads(response['body'].read())['content'][0]['text']
+    stream_generate(prompt) -> Iterator[str]
+      ← streaming via invoke_model_with_response_stream
+
+<span style="color:#44aaff;font-weight:700">── evaluation/ragas_evaluator.py ──</span>
+class RAGASEvaluator:
+  Full RAGAS evaluation: 4 metrics.
+  
+  from ragas import evaluate
+  from ragas.metrics import (
+      faithfulness,
+      answer_relevancy,
+      context_precision,
+      context_recall
+  )
+  
+  methods:
+    evaluate_response(query: str,
+                      answer: str,
+                      contexts: List[str],
+                      ground_truth: str = None) -> RAGASScores
+      dataset = Dataset.from_dict({
+        "question": [query],
+        "answer": [answer],
+        "contexts": [contexts],
+        "ground_truth": [ground_truth or query]
+      })
+      scores = evaluate(dataset,
+                        metrics=[faithfulness,
+                                 answer_relevancy,
+                                 context_precision,
+                                 context_recall])
+      return RAGASScores(**scores.to_pandas().iloc[0].to_dict())
+    
+    batch_evaluate(qa_pairs: List[dict]) -> pd.DataFrame
+    compute_aggregate_scores(history: List[RAGASScores]) -> dict
+
+<span style="color:#44aaff;font-weight:700">── monitoring/drift_detector.py ──</span>
+class EmbeddingDriftDetector:
+  Evidently AI for embedding distribution drift.
+  
+  from evidently.metrics import EmbeddingsDriftMetric
+  from evidently.report import Report
+  
+  methods:
+    compute_drift(reference_embeddings: np.ndarray,
+                  current_embeddings: np.ndarray) -> DriftReport
+      report = Report(metrics=[EmbeddingsDriftMetric()])
+      report.run(reference_data=pd.DataFrame(ref_emb),
+                 current_data=pd.DataFrame(cur_emb))
+      return parse_drift_report(report)
+    
+    monitor_query_distribution(new_queries: List[str])
+      embed new queries → compare vs reference distribution
+      → trigger alert if drift_score > threshold
+    
+    trigger_reindex_if_needed(drift_report) -> bool
+      if drift_score > 0.3: trigger self_healer.reindex()
+
+<span style="color:#44aaff;font-weight:700">── dashboard/app.py ──</span>
+MUST contain:
+  import webbrowser
+  if __name__ == '__main__':
+      webbrowser.open('http://localhost:8050')
+      app.run(debug=False, port=8050, host='0.0.0.0')
+
+<span style="color:#ffaa00;font-weight:700">═══════════════════════════════════════════
+SECTION 6 — CONFIGS (EXACT VALUES)
+═══════════════════════════════════════════</span>
+
+<span style="color:#cc88ff">pipeline_config.yaml:
+  corpus:
+    wikipedia_topics: [AI, machine_learning, NLP, transformers,
+                       RAG, vector_databases, LLM]
+    arxiv_queries: [retrieval augmented generation, 
+                    large language models, vector search]
+    sec_tickers: [MSFT, GOOGL, META, AMZN, NVDA]
+    pubmed_queries: [natural language processing clinical,
+                     medical AI diagnosis]
+    n_docs_per_source: 500
+  chunking:
+    chunk_size: 512
+    chunk_overlap: 64
+    strategy: semantic  ← NOT fixed-size
+  
+model_config.yaml:
+  llm:
+    provider: aws_bedrock
+    model_id: anthropic.claude-3-sonnet-20240229-v1:0
+    max_tokens: 2048
+    temperature: 0.1
+    region: us-east-1
+  embeddings:
+    primary: cohere
+    model: embed-english-v3.0
+    dimensions: 1024
+    fallback: multi-qa-mpnet-base-v2
+
+retrieval_config.yaml:
+  hybrid:
+    dense_weight: 0.7
+    sparse_weight: 0.3
+    rrf_k: 60
+    top_k: 20
+  reranking:
+    crossencoder_model: cross-encoder/ms-marco-MiniLM-L-6-v2
+    colbert_top_k: 5
+    final_top_k: 5
+  query_expansion:
+    hyde_enabled: true
+    multi_query_n: 3
+  hnsw:
+    m: 16
+    ef_construction: 64
+    ef_search: 100
+
+evaluation_config.yaml:
+  ragas:
+    faithfulness_threshold: 0.7
+    relevancy_threshold: 0.6
+    precision_threshold: 0.5
+    recall_threshold: 0.5
+  healing:
+    max_attempts: 3
+    strategies: [reformulate, expand, switch_mode, fallback_prompt]
+
+monitoring_config.yaml:
+  drift:
+    reference_window: 1000
+    current_window: 100
+    drift_threshold: 0.3
+    check_interval_queries: 50
+  alerts:
+    faithfulness_low: 0.6
+    latency_high_ms: 3000
+    drift_detected: 0.3</span>
+
+<span style="color:#ffaa00;font-weight:700">═══════════════════════════════════════════
+SECTION 7 — 22 VISUALIZATIONS (ALL REAL DATA)
+═══════════════════════════════════════════</span>
+
+Tech Ops Center UI — dark purple/blue theme.
+ALL use real pipeline data.
+
+<span style="color:#00ff88">PAGE 1 — RAG OPS CENTER (main):</span>
+
+VIZ01: LIVE QUERY INTERFACE
+  Chat-style input box at top
+  Submit query → pipeline runs → answer streams back
+  Source citations listed with clickable chunk previews
+  Confidence score badge on answer
+
+VIZ02: PIPELINE STAGE WATERFALL
+  Horizontal bar chart per query:
+    Router → Retriever → Reranker → Generator → Evaluator
+  Each stage shows latency (ms) + status (pass/heal/fail)
+  Color: green=fast, amber=slow, red=healing triggered
+  Updates after each query
+
+VIZ03: RAGAS SCORES LIVE GAUGE
+  4 circular gauges: Faithfulness / Relevancy /
+                     Context Precision / Context Recall
+  Color: green>0.7, amber 0.5-0.7, red<0.5
+  Rolling 10-query average shown below
+
+VIZ04: QUERY THROUGHPUT TIMELINE
+  Queries per minute over last 1 hour
+  P50/P95/P99 latency lines
+  Healing events marked as red triangles
+
+VIZ05: RETRIEVAL SCORE DISTRIBUTION
+  Histogram of hybrid retrieval scores
+  BM25 vs Dense vs Fused score distributions
+  Reranker score before/after comparison
+
+VIZ06: DOCUMENT SOURCE BREAKDOWN
+  Pie chart: Wikipedia / ArXiv / SEC / PubMed / CC
+  Per-source RAGAS performance comparison
+  Click source → filter all metrics by source
+
+VIZ07: SELF-HEALING LOG (scrolling)
+  Queries that triggered healing
+  Which strategy fixed it
+  Before/after faithfulness scores
+  Healing success rate %
+
+<span style="color:#00ff88">PAGE 2 — RETRIEVAL LAB:</span>
+
+VIZ08: HYBRID RETRIEVAL FUSION CHART
+  Per query: BM25 ranks vs Dense ranks vs RRF fusion
+  Scatter plot: BM25 score vs Dense score per doc
+  Color = final RRF rank
+  Shows how fusion improves over individual methods
+
+VIZ09: EMBEDDING SPACE VISUALIZATION (t-SNE)
+  Real document embeddings in 2D via t-SNE
+  Color by source (Wikipedia/ArXiv/SEC/PubMed)
+  Query embedding shown as star marker
+  Retrieved docs highlighted (larger circles)
+  Updates per query
+
+VIZ10: RETRIEVAL HEATMAP
+  X: query, Y: document chunk
+  Color = relevance score
+  Shows which chunks are consistently retrieved
+  Click chunk → view full content
+
+VIZ11: QUERY EXPANSION ANALYSIS
+  Original query vs 3 expanded versions
+  Retrieved docs per query variant (Venn diagram style)
+  Unique docs contributed by HyDE
+  Overlap percentage
+
+VIZ12: RERANKING IMPACT CHART
+  Before reranking: top-20 scores
+  After CrossEncoder: top-10 scores
+  After ColBERT: top-5 scores
+  Score lift per document shown as delta bars
+
+<span style="color:#00ff88">PAGE 3 — AGENT FLOW MONITOR:</span>
+
+VIZ13: LANGGRAPH STATE FLOW (Cytoscape)
+  6 nodes: Router/Retriever/Reranker/Generator/Evaluator/Healer
+  Live highlighting as query progresses
+  Edge thickness = message frequency
+  Healing loops shown as red edges
+  Dash-cytoscape interactive
+
+VIZ14: AGENT DECISION TIMELINE
+  Gantt chart: 6 agents × time per query
+  Tool calls shown as dots on each bar
+  Conditional routing shown as arrows
+
+VIZ15: ROUTER CLASSIFICATION MATRIX
+  Confusion matrix: query_type classification
+  factual / analytical / comparative / conversational
+  Routing strategy assigned per type
+
+VIZ16: HEALING STRATEGY HEATMAP
+  X: healing strategy, Y: query type
+  Color = success rate
+  Which strategies work best for which query types
+
+<span style="color:#00ff88">PAGE 4 — EVALUATION HUB:</span>
+
+VIZ17: RAGAS METRICS OVER TIME
+  4 line charts (one per metric)
+  Rolling average + raw per-query scores
+  Threshold lines marked (dashed)
+  Trend: improving/degrading indicator
+
+VIZ18: FAITHFULNESS BREAKDOWN
+  Per-claim faithfulness analysis
+  Which claims are supported vs hallucinated
+  Pie: supported / unsupported / partially
+  Real RAGAS NLI output
+
+VIZ19: ANSWER QUALITY RADAR
+  5-axis: faithfulness/relevancy/precision/recall/latency
+  Current query vs rolling average
+  Best query vs worst query overlay
+
+<span style="color:#00ff88">PAGE 5 — DRIFT MONITOR:</span>
+
+VIZ20: EMBEDDING DRIFT DASHBOARD (Evidently)
+  Reference distribution vs current distribution
+  Drift score timeline
+  Alert: STABLE / WATCH / DRIFT DETECTED
+  Evidently HTML report embedded
+
+VIZ21: CORPUS STALENESS MAP
+  Document age distribution per source
+  Oldest documents highlighted
+  Re-ingestion recommendations
+
+VIZ22: SYSTEM HEALTH SCORECARD
+  Live metrics: DB connections / Query latency /
+               Cache hit rate / Model availability /
+               Healing rate / RAGAS mean score
+  Traffic light indicators per metric
+  Last updated timestamp (real-time)
+
+<span style="color:#ffaa00;font-weight:700">═══════════════════════════════════════════
+SECTION 8 — TECH OPS CENTER UI (EXACT)
+═══════════════════════════════════════════</span>
+
+<span style="color:#cc88ff">dashboard/theme.py:
+BG_PRIMARY    = '#06080f'
+BG_PANEL      = '#090b16'
+BG_CARD       = '#0c0e1c'
+BORDER        = '#141830'
+ACCENT_PURPLE = '#7f77dd'
+ACCENT_DIM    = '#2d2a55'
+SUCCESS       = '#1d9e75'
+WARNING       = '#ba7517'
+CRITICAL      = '#e24b4a'
+INFO          = '#378add'
+TEXT_PRIMARY  = '#afa9ec'
+TEXT_DIM      = '#3a3666'
+FONT          = 'JetBrains Mono, Courier New, monospace'
+
+Header:
+  ◈ NEXUS-RAG  [PRODUCTION SYSTEM v1.0]
+  CORPUS: 2,500 docs | QUERIES TODAY: [N] |
+  AVG FAITHFULNESS: [score] | SYSTEM: ● ONLINE
+  [timestamp updating every second]
+
+Status bar:
+  [DB: CONNECTED][BEDROCK: ONLINE][EMBEDDINGS: COHERE v3]
+  [HNSW INDEX: 2.5K docs][DRIFT: STABLE][HEALINGS: 3/100]</span>
+
+<span style="color:#ffaa00;font-weight:700">═══════════════════════════════════════════
+SECTION 9 — ALL 30 TESTS
+═══════════════════════════════════════════</span>
+
+tests/conftest.py:
+  All fixtures use REAL data (cached):
+  wiki_docs() → real Wikipedia articles
+  arxiv_docs() → real ArXiv abstracts
+  embedded_docs() → real Cohere/local embeddings
+  pg_client() → real PostgreSQL connection
+  bedrock_client() → real/mock AWS Bedrock
+
+test_data_fetchers.py (5):
+  test_wikipedia_returns_real_articles
+    → fetch_articles(['AI'], n=5) → len > 0, each has content
+  test_arxiv_returns_real_papers
+    → fetch_papers('RAG', 10) → len > 0, has abstract
+  test_sec_edgar_returns_filings
+    → fetch_10k_filings('MSFT', 2) → len > 0
+  test_pubmed_returns_abstracts
+    → search('NLP', 10) + fetch_abstracts → len > 0
+  test_commoncrawl_fetches_real_page
+    → search_index + fetch_page → content not empty
+
+test_ingestion.py (5):
+  test_semantic_chunker_output
+    → chunk 500-word doc → chunks between 3-15 sentences each
+  test_embedder_correct_dimensions
+    → embed(['test doc']) → shape (1, 1024)
+  test_hnsw_index_creation
+    → create index → can query with cosine distance
+  test_bm25_index_returns_ranked
+    → index 10 docs → query → results in score order
+  test_deduplication_removes_duplicates
+    → insert identical doc twice → only 1 in DB
+
+test_retrieval.py (6):
+  test_hybrid_rrf_fusion_correct
+    → dense_rank=1,sparse_rank=3 → fused > dense_rank=5
+  test_hyde_generates_hypothetical
+    → hyde_expand('what is RAG?') → non-empty string
+  test_colbert_maxsim_formula
+    → score = Σ_qi max_dj cos(Eq(qi), Ed(dj))
+    → verify formula output > 0 on real embeddings
+  test_crossencoder_ranks_relevant_first
+    → relevant doc gets higher score than irrelevant
+  test_multi_query_generates_variants
+    → multi_query_expand(q, 3) → 3 different strings
+  test_retrieval_returns_top_k
+    → retrieve(q, k=5) → exactly 5 results
+
+test_agents.py (6):
+  test_router_classifies_factual
+    → "What is RAG?" → query_type == 'factual'
+  test_full_graph_runs_end_to_end
+    → run(state) → state.final_answer not empty
+  test_healer_triggered_on_low_faithfulness
+    → inject low-score response → healer_node called
+  test_max_healing_attempts_respected
+    → healing_attempts maxes at 3
+  test_all_6_nodes_called
+    → trace shows all 6 nodes in pipeline_trace
+  test_citations_extracted_from_answer
+    → answer with [1][2] → citations list len == 2
+
+test_evaluation.py (4):
+  test_ragas_faithfulness_range
+    → score in [0.0, 1.0]
+  test_faithfulness_low_for_hallucination
+    → inject hallucinated answer → faithfulness < 0.5
+  test_ragas_all_4_metrics_present
+    → scores dict has all 4 keys
+  test_batch_evaluate_returns_dataframe
+    → batch_evaluate(5 pairs) → df.shape == (5, 4)
+
+test_monitoring.py (4):
+  test_drift_detected_on_shifted_distribution
+    → shift embeddings by 2σ → drift_score > 0.3
+  test_no_drift_on_same_distribution
+    → same data → drift_score < 0.1
+  test_alert_triggers_on_threshold
+    → faithfulness < 0.6 → alert created
+  test_latency_tracker_records_stages
+    → run query → all 5 stages have recorded latency
+
+<span style="color:#ffaa00;font-weight:700">═══════════════════════════════════════════
+SECTION 10 — MAKEFILE
+═══════════════════════════════════════════</span>
+
+make install    → pip install -r requirements.txt
+make db         → docker-compose up -d postgres
+make fetch      → python data/processors/document_store.py --fetch
+make ingest     → python ingestion/pipeline.py
+make run        → python dashboard/app.py (OPENS BROWSER AUTO)
+make api        → uvicorn api.server:app --reload --port 8000
+make evaluate   → python evaluation/benchmark_runner.py
+make test       → pytest tests/ -v --color=yes
+make lint       → black . --line-length 100 && flake8 .
+make notebook   → jupyter notebook notebooks/
+make clean      → find . -name __pycache__ -exec rm -rf {} +
+
+<span style="color:#ffaa00;font-weight:700">═══════════════════════════════════════════
+SECTION 11 — NOTEBOOKS (REAL DATA)
+═══════════════════════════════════════════</span>
+
+01_data_exploration.ipynb:
+  - Fetch 50 Wikipedia + 20 ArXiv + 10 SEC docs
+  - Chunk distribution: size histogram per source
+  - Embedding PCA: 2D cluster plot per source
+  - Token count distributions
+  - Semantic similarity within + across sources
+
+02_retrieval_analysis.ipynb:
+  - BM25 vs Dense vs Hybrid comparison on 20 queries
+  - RRF fusion benefit visualization
+  - CrossEncoder vs ColBERT ranking comparison
+  - HyDE impact: with vs without expansion
+  - Retrieval latency breakdown
+
+03_evaluation_results.ipynb:
+  - RAGAS scores on 50 real questions
+  - Faithfulness distribution histogram
+  - Healing success rate analysis
+  - Drift detection on 2 weeks of queries
+  - Full benchmark table vs naive RAG baseline
+
+<span style="color:#ff2244;font-weight:700">═══════════════════════════════════════════
+FINAL CHECKLIST — ALL GREEN BEFORE COMMIT
+═══════════════════════════════════════════
+
+REAL DATA:
+[ ] Wikipedia articles fetched via API
+[ ] ArXiv papers downloaded via arxiv library
+[ ] SEC EDGAR 10-K filings fetched
+[ ] PubMed abstracts via E-utilities
+[ ] CommonCrawl pages fetched
+[ ] grep np.random|fake|mock|placeholder → ZERO in data/
+
+CODE:
+[ ] All 88 files created and complete
+[ ] grep TODO|pass|NotImplemented|\.\.\. → ZERO in .py
+[ ] python -c "
+    from agents.graph import NEXUSRAGGraph;
+    from retrieval.hybrid_retriever import HybridRetriever;
+    from retrieval.colbert_reranker import ColBERTReranker;
+    from evaluation.ragas_evaluator import RAGASEvaluator;
+    from monitoring.drift_detector import EmbeddingDriftDetector;
+    from generation.bedrock_client import BedrockClient;
+    from dashboard.app import app;
+    print('ALL IMPORTS OK')" → ALL IMPORTS OK
+
+DATABASE:
+[ ] docker-compose up -d postgres → running
+[ ] pgvector extension installed
+[ ] HNSW index created with m=16, ef_construction=64
+
+INGESTION:
+[ ] make fetch → all 5 sources fetched + cached
+[ ] make ingest → 2500+ docs embedded + indexed
+[ ] BM25 index built on same corpus
+
+RUNTIME:
+[ ] make run → browser opens localhost:8050 AUTOMATICALLY
+[ ] Query input works → answer streams back
+[ ] All 22 visualizations render with real data
+[ ] Tech Ops purple theme applied throughout
+[ ] RAGAS scores show on gauges (VIZ03)
+[ ] Pipeline waterfall updates per query (VIZ02)
+[ ] LangGraph flow lights up (VIZ13)
+
+API:
+[ ] make api → FastAPI starts on port 8000
+[ ] /query endpoint returns answer + RAGAS scores
+[ ] /monitor endpoint returns drift report
+
+TESTS:
+[ ] pytest tests/ -v → 30/30 PASSED
+[ ] black --check . --line-length 100 → clean
+[ ] flake8 . --max-line-length=100 → 0 errors
+[ ] All 3 notebooks Restart & Run All → no errors
+
+FINAL:
+[ ] GitHub Actions CI → green on main
+[ ] README 14 sections complete
+[ ] Commit message matches RULE 9 exactly
+[ ] PR title: "feat: complete NEXUS-RAG implementation"
+[ ] Merge ONLY after CI green</span>
+  </div>
+</div>
+<div class="stats">
+  <div class="stat"><strong>88</strong><span>Files</span></div>
+  <div class="stat"><strong>30</strong><span>Tests</span></div>
+  <div class="stat"><strong>22</strong><span>Visualizations</span></div>
+  <div class="stat"><strong>5</strong><span>Real Data APIs</span></div>
+  <div class="stat"><strong>6</strong><span>LangGraph Nodes</span></div>
+  <div class="stat"><strong>0</strong><span>Mock Data</span></div>
+</div>
+<script>
+function copyAll(){
+  const text = document.getElementById('pc').innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    const b=document.getElementById('btn');
+    b.textContent='✓ COPIED!';
+    b.style.background='#00ff88';
+    b.style.color='#000';
+    setTimeout(()=>{
+      b.textContent='⎘ COPY FULL PROMPT';
+      b.style.background='#534ab7';
+      b.style.color='#fff';
+    },3000);
+  });
+}
+</script>
+</body>
+</html>
