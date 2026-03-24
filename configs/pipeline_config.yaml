@@ -1,0 +1,28 @@
+corpus:
+  wikipedia_topics:
+    - AI
+    - machine_learning
+    - NLP
+    - transformers
+    - RAG
+    - vector_databases
+    - LLM
+  arxiv_queries:
+    - retrieval augmented generation
+    - large language models
+    - vector search
+  sec_tickers:
+    - MSFT
+    - GOOGL
+    - META
+    - AMZN
+    - NVDA
+  pubmed_queries:
+    - natural language processing clinical
+    - medical AI diagnosis
+  n_docs_per_source: 500
+
+chunking:
+  chunk_size: 512
+  chunk_overlap: 64
+  strategy: semantic

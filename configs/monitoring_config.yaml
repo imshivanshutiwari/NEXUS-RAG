@@ -1,0 +1,10 @@
+drift:
+  reference_window: 1000
+  current_window: 100
+  drift_threshold: 0.3
+  check_interval_queries: 50
+
+alerts:
+  faithfulness_low: 0.6
+  latency_high_ms: 3000
+  drift_detected: 0.3
