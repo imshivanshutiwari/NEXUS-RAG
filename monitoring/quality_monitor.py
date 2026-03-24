@@ -1,7 +1,7 @@
 """Quality monitor: track RAGAS score history and surface trends."""
 
 from collections import deque
-from typing import Any, Deque, Dict, List, Optional
+from typing import Any, Deque, Dict, List
 
 import numpy as np
 

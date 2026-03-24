@@ -1,6 +1,5 @@
 """Tests for BM25Indexer."""
 
-import pytest
 from ingestion.bm25_indexer import BM25Indexer
 
 

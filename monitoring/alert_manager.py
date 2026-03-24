@@ -2,7 +2,7 @@
 
 import time
 from dataclasses import dataclass, field
-from typing import Callable, Dict, List, Optional
+from typing import Callable, List, Optional
 
 from utils.config_loader import ConfigLoader
 from utils.logger import get_logger

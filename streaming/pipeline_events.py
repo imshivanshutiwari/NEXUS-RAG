@@ -2,7 +2,7 @@
 
 import asyncio
 import json
-from typing import Any, Callable, Dict, List
+from typing import Any, Dict, List
 
 from utils.logger import get_logger
 

@@ -1,7 +1,5 @@
 """Router agent: classify query type and set retrieval strategy."""
 
-from typing import Any, Dict
-
 from agents.state import RAGState
 from utils.logger import get_logger
 

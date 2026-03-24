@@ -1,6 +1,5 @@
 """Full ingestion pipeline: fetch → chunk → embed → index."""
 
-from pathlib import Path
 from typing import List
 
 from utils.logger import get_logger

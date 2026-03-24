@@ -1,6 +1,6 @@
 """RAGState TypedDict — shared state flowing through the LangGraph pipeline."""
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 from typing_extensions import TypedDict
 
 

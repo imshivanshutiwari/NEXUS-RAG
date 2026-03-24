@@ -1,6 +1,5 @@
 """Dense retriever using pgvector ANN search."""
 
-from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 
 import numpy as np

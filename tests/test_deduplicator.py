@@ -1,6 +1,5 @@
 """Tests for Deduplicator."""
 
-import pytest
 from ingestion.deduplicator import Deduplicator
 
 

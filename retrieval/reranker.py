@@ -1,6 +1,5 @@
 """CrossEncoder reranker using ms-marco-MiniLM-L-6-v2."""
 
-from dataclasses import dataclass, field
 from typing import List
 
 from ingestion.indexer import ScoredDocument

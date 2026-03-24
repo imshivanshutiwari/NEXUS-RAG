@@ -22,7 +22,6 @@ class QueryStreamer:
             from generation.prompt_builder import PromptBuilder
             from retrieval.hybrid_retriever import HybridRetriever
             from retrieval.reranker import CrossEncoderReranker
-            from ingestion.indexer import ScoredDocument
 
             # Retrieve
             retriever = HybridRetriever()

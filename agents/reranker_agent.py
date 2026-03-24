@@ -1,7 +1,5 @@
 """Reranker agent: CrossEncoder → top 10, ColBERT → top 5."""
 
-from typing import Any, List
-
 from agents.state import RAGState
 from utils.logger import get_logger
 

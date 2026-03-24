@@ -23,7 +23,7 @@ def healer_node(state: RAGState) -> RAGState:
         )
         state["final_answer"] = state.get("generated_answer", "")
         state["pipeline_trace"] = state.get("pipeline_trace", []) + [
-            f"healer: max attempts reached — using best available answer"
+            "healer: max attempts reached — using best available answer"
         ]
         return state
 

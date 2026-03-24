@@ -2,7 +2,7 @@
 
 import dash
 import dash_bootstrap_components as dbc
-from dash import html, dcc
+from dash import dcc
 
 from dashboard.theme import THEME, BG, ACCENT, HEADER_STYLE
 

@@ -1,7 +1,6 @@
 """Tests for DocumentEmbedder (local fallback path)."""
 
 import numpy as np
-import pytest
 from unittest.mock import patch, MagicMock
 
 

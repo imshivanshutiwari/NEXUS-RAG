@@ -118,7 +118,11 @@ class PubMedFetcher:
             if not pmc_ids:
                 return None
             pmc_id = pmc_ids[0]
-            oa_url = f"https://www.ncbi.nlm.nih.gov/pmc/oai/oai.cgi?verb=GetRecord&identifier=oai:pubmedcentral.nih.gov:{pmc_id}&metadataPrefix=pmc"
+            oa_url = (
+                "https://www.ncbi.nlm.nih.gov/pmc/oai/oai.cgi"
+                f"?verb=GetRecord&identifier=oai:pubmedcentral.nih.gov:{pmc_id}"
+                "&metadataPrefix=pmc"
+            )
             resp2 = self.session.get(oa_url, timeout=30)
             resp2.raise_for_status()
             doc = Document(

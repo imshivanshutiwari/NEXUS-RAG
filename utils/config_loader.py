@@ -1,6 +1,5 @@
 """YAML configuration loader with dot-notation access."""
 
-import os
 from pathlib import Path
 from typing import Any
 

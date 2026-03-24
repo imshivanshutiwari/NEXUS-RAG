@@ -1,6 +1,6 @@
 """Retriever agent: orchestrates hybrid retrieval + query expansion."""
 
-from typing import Any, Dict, List
+from typing import Dict
 
 from agents.state import RAGState
 from utils.logger import get_logger
@@ -14,7 +14,6 @@ def retriever_node(state: RAGState) -> RAGState:
     Runs hybrid BM25 + pgvector HNSW retrieval with HyDE + multi-query expansion.
     Collects top-20 candidates.
     """
-    from agents.tools import hybrid_search
     from retrieval.query_expander import QueryExpander
 
     query = state["query"]

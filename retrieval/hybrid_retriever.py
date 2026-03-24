@@ -1,7 +1,6 @@
 """Hybrid retriever: BM25 sparse + pgvector dense fused via RRF."""
 
-from dataclasses import dataclass, field
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 from ingestion.indexer import ScoredDocument
 from retrieval.dense_retriever import DenseRetriever

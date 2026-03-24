@@ -153,7 +153,6 @@ def trace_query(n, query):
         result = NEXUSPipeline().query(query)
         trace = result.get("pipeline_trace", [])
         stages_hit = [t.split(":")[0] for t in trace]
-        stage_order = [s for s in _NODES if s in stages_hit]
         colors = [ACCENT if s in stages_hit else "#333" for s in _NODES]
         fig1 = go.Figure(
             go.Bar(

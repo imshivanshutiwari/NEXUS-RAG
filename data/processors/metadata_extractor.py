@@ -2,7 +2,6 @@
 
 import re
 from dataclasses import dataclass, field
-from typing import Optional
 
 
 @dataclass
@@ -55,10 +54,14 @@ class MetadataExtractor:
 
     def _extract_date(self, content: str) -> str:
         """Find first ISO-8601 or common date pattern."""
+        _MONTHS = (
+            "January|February|March|April|May|June"
+            "|July|August|September|October|November|December"
+        )
         patterns = [
             r"\b(\d{4}-\d{2}-\d{2})\b",
             r"\b(\d{2}/\d{2}/\d{4})\b",
-            r"\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s+\d{4}\b",
+            rf"\b({_MONTHS})\s+\d{{1,2}},\s+\d{{4}}\b",
         ]
         for pattern in patterns:
             m = re.search(pattern, content)

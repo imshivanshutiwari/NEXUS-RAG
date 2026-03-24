@@ -1,6 +1,6 @@
 """MinHash LSH deduplicator for near-duplicate document removal."""
 
-from typing import Dict, List, Set, Tuple
+from typing import Dict, List, Set
 
 from utils.logger import get_logger
 
@@ -37,8 +37,6 @@ class Deduplicator:
         """Return documents with near-duplicates removed. Keeps first occurrence."""
         if self._lsh is None:
             return documents
-
-        from datasketch import MinHash
 
         unique: List[Dict[str, str]] = []
         for doc in documents:

@@ -1,6 +1,5 @@
 """Full benchmark pipeline: evaluate NEXUS-RAG on a real question set."""
 
-import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 

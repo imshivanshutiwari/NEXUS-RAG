@@ -1,7 +1,6 @@
 """Wikipedia fetcher using the real Wikipedia API."""
 
 import json
-import os
 import time
 from dataclasses import dataclass, field
 from pathlib import Path

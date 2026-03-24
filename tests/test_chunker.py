@@ -1,6 +1,5 @@
 """Tests for TextChunker."""
 
-import pytest
 from data.processors.text_chunker import TextChunker
 
 

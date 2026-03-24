@@ -1,7 +1,7 @@
 """Evidently AI embedding drift detector."""
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional
+from typing import List, Optional
 
 import numpy as np
 import pandas as pd

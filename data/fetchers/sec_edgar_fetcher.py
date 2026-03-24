@@ -100,7 +100,7 @@ class SECEDGARFetcher:
     def _fetch_filings(
         self, ticker: str, cik: str, form_type: str, n: int
     ) -> List[Document]:
-        cache_path = self.cache_dir / f"{ticker}_{form_type.replace('-','')}.json"
+        cache_path = self.cache_dir / f"{ticker}_{form_type.replace('-', '')}.json"
         if cache_path.exists():
             return [Document(**d) for d in json.loads(cache_path.read_text())]
 
