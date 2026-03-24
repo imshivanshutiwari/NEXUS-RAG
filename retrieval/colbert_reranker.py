@@ -1,4 +1,5 @@
 """ColBERT late interaction reranker: MaxSim scoring."""
+
 from dataclasses import dataclass, field
 from typing import List
 
@@ -27,7 +28,9 @@ class ColBERTReranker:
 
                 # Use a token-level model as ColBERT proxy
                 self._model = SentenceTransformer("multi-qa-mpnet-base-v2")
-                logger.info("ColBERTReranker: loaded SentenceTransformer as ColBERT proxy.")
+                logger.info(
+                    "ColBERTReranker: loaded SentenceTransformer as ColBERT proxy."
+                )
             except Exception as exc:
                 logger.error("ColBERTReranker: model load failed: %s", exc)
         return self._model

@@ -1,4 +1,5 @@
 """pgvector HNSW indexer for document embeddings."""
+
 import json
 import os
 from dataclasses import dataclass, field
@@ -170,7 +171,9 @@ def _rrf_fusion(
     # Build rank maps
     dense_rank: Dict[str, int] = {r.doc_id: i + 1 for i, r in enumerate(dense_results)}
     bm25_sorted = sorted(bm25_scores.items(), key=lambda x: -x[1])
-    sparse_rank: Dict[str, int] = {doc_id: i + 1 for i, (doc_id, _) in enumerate(bm25_sorted)}
+    sparse_rank: Dict[str, int] = {
+        doc_id: i + 1 for i, (doc_id, _) in enumerate(bm25_sorted)
+    }
 
     all_ids = set(dense_rank.keys()) | set(sparse_rank.keys())
     fused: List[tuple] = []
@@ -189,12 +192,14 @@ def _rrf_fusion(
     for doc_id, score in fused[:k]:
         if doc_id in doc_map:
             r = doc_map[doc_id]
-            results.append(ScoredDocument(
-                doc_id=r.doc_id,
-                content=r.content,
-                score=score,
-                source=r.source,
-                metadata=r.metadata,
-                chunk_index=r.chunk_index,
-            ))
+            results.append(
+                ScoredDocument(
+                    doc_id=r.doc_id,
+                    content=r.content,
+                    score=score,
+                    source=r.source,
+                    metadata=r.metadata,
+                    chunk_index=r.chunk_index,
+                )
+            )
     return results

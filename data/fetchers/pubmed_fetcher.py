@@ -1,4 +1,5 @@
 """PubMed fetcher using NCBI E-utilities (no API key required for basic use)."""
+
 import json
 import time
 import xml.etree.ElementTree as ET
@@ -52,7 +53,9 @@ class PubMedFetcher:
             "retmode": "json",
         }
         try:
-            resp = self.session.get(_BASE_URL + "esearch.fcgi", params=params, timeout=15)
+            resp = self.session.get(
+                _BASE_URL + "esearch.fcgi", params=params, timeout=15
+            )
             resp.raise_for_status()
             pmids = resp.json()["esearchresult"]["idlist"]
             cache_path.write_text(json.dumps(pmids))
@@ -65,7 +68,9 @@ class PubMedFetcher:
         """Fetch abstracts for a list of PubMed IDs."""
         if not pmids:
             return []
-        cache_path = self.cache_dir / f"abstracts_{self._safe(','.join(pmids[:10]))}.json"
+        cache_path = (
+            self.cache_dir / f"abstracts_{self._safe(','.join(pmids[:10]))}.json"
+        )
         if cache_path.exists():
             return [Document(**d) for d in json.loads(cache_path.read_text())]
 
@@ -105,7 +110,9 @@ class PubMedFetcher:
             "retmode": "json",
         }
         try:
-            resp = self.session.get(_BASE_URL + "esearch.fcgi", params=params, timeout=15)
+            resp = self.session.get(
+                _BASE_URL + "esearch.fcgi", params=params, timeout=15
+            )
             resp.raise_for_status()
             pmc_ids = resp.json()["esearchresult"]["idlist"]
             if not pmc_ids:
@@ -141,9 +148,7 @@ class PubMedFetcher:
                 title_el = article.find(".//ArticleTitle")
                 title = title_el.text or "" if title_el is not None else ""
                 abstract_texts = article.findall(".//AbstractText")
-                abstract = " ".join(
-                    (el.text or "") for el in abstract_texts if el.text
-                )
+                abstract = " ".join((el.text or "") for el in abstract_texts if el.text)
                 pub_date = article.find(".//PubDate")
                 year = ""
                 if pub_date is not None:

@@ -1,4 +1,5 @@
 """Context precision and recall metrics for RAG evaluation."""
+
 from typing import Dict, List
 
 import numpy as np
@@ -32,7 +33,10 @@ class ContextMetrics:
         try:
             q_emb = embedder.embed_query(query)
             c_embs = embedder.embed_documents(contexts)
-            sims = [float(embedder.compute_similarity(q_emb, c_embs[i])) for i in range(len(contexts))]
+            sims = [
+                float(embedder.compute_similarity(q_emb, c_embs[i]))
+                for i in range(len(contexts))
+            ]
             relevant = [s for s in sims if s >= threshold]
             precision = len(relevant) / len(sims) if sims else 0.0
             return {"context_precision": max(0.0, min(1.0, precision))}

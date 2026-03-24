@@ -1,4 +1,5 @@
 """Hybrid retriever: BM25 sparse + pgvector dense fused via RRF."""
+
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional
 
@@ -97,4 +98,6 @@ class HybridRetriever:
         """Dynamically adjust fusion weights based on query type."""
         self._dense_w = dense_w
         self._sparse_w = sparse_w
-        logger.info("HybridRetriever: weights updated dense=%.2f sparse=%.2f", dense_w, sparse_w)
+        logger.info(
+            "HybridRetriever: weights updated dense=%.2f sparse=%.2f", dense_w, sparse_w
+        )

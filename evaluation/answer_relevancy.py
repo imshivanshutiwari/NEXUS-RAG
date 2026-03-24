@@ -1,4 +1,5 @@
 """Answer relevancy scorer: measures how well the answer addresses the question."""
+
 from typing import Dict
 
 import numpy as np
@@ -52,7 +53,9 @@ class AnswerRelevancyScorer:
                 f"Return one question per line, no numbering.\n\nText: {answer[:500]}\n\nQuestions:"
             )
             response = BedrockClient().generate(prompt, max_tokens=256, temperature=0.3)
-            return [line.strip() for line in response.strip().splitlines() if line.strip()][:n]
+            return [
+                line.strip() for line in response.strip().splitlines() if line.strip()
+            ][:n]
         except Exception as exc:
             logger.warning("AnswerRelevancyScorer: question generation failed: %s", exc)
             return []

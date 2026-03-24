@@ -1,4 +1,5 @@
 """Full benchmark pipeline: evaluate NEXUS-RAG on a real question set."""
+
 import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -51,7 +52,9 @@ class BenchmarkRunner:
         rows: List[Dict[str, Any]] = []
 
         for i, question in enumerate(questions):
-            logger.info("BenchmarkRunner: Q%d/%d: '%s...'", i + 1, len(questions), question[:60])
+            logger.info(
+                "BenchmarkRunner: Q%d/%d: '%s...'", i + 1, len(questions), question[:60]
+            )
             try:
                 state = rag.run(question)
                 answer = state.get("final_answer", "")
@@ -90,7 +93,12 @@ class BenchmarkRunner:
         logger.info("BenchmarkRunner: saved results to %s", output)
 
         # Print summary
-        numeric_cols = ["faithfulness", "answer_relevancy", "context_precision", "context_recall"]
+        numeric_cols = [
+            "faithfulness",
+            "answer_relevancy",
+            "context_precision",
+            "context_recall",
+        ]
         for col in numeric_cols:
             if col in df.columns:
                 logger.info("  Mean %s: %.3f", col, df[col].mean())
@@ -117,13 +125,20 @@ class BenchmarkRunner:
                 baseline_rows.append(scores)
             except Exception:
                 baseline_rows.append(
-                    {"faithfulness": 0.0, "answer_relevancy": 0.0, "context_precision": 0.0, "context_recall": 0.0}
+                    {
+                        "faithfulness": 0.0,
+                        "answer_relevancy": 0.0,
+                        "context_precision": 0.0,
+                        "context_recall": 0.0,
+                    }
                 )
 
         baseline_df = pd.DataFrame(baseline_rows)
         return {
             "nexus_rag_mean": df[["faithfulness", "answer_relevancy"]].mean().to_dict(),
-            "baseline_mean": baseline_df[["faithfulness", "answer_relevancy"]].mean().to_dict(),
+            "baseline_mean": baseline_df[["faithfulness", "answer_relevancy"]]
+            .mean()
+            .to_dict(),
         }
 
 

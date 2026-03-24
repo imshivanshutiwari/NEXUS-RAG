@@ -1,4 +1,5 @@
 """Sparse (BM25) retriever."""
+
 from dataclasses import dataclass, field
 from typing import List, Tuple
 
@@ -27,10 +28,7 @@ class SparseRetriever:
     def search(self, query: str, k: int = 40) -> List[ScoredDocument]:
         """Return top-k BM25-scored documents for *query*."""
         results = self.bm25.search(query, k=k)
-        return [
-            ScoredDocument(doc_id=doc_id, score=score)
-            for doc_id, score in results
-        ]
+        return [ScoredDocument(doc_id=doc_id, score=score) for doc_id, score in results]
 
     def get_scores(self, query: str) -> dict:
         """Return {doc_id: bm25_score} for all indexed docs."""

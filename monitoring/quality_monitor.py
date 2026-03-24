@@ -1,4 +1,5 @@
 """Quality monitor: track RAGAS score history and surface trends."""
+
 from collections import deque
 from typing import Any, Deque, Dict, List, Optional
 
@@ -40,10 +41,7 @@ class QualityMonitor:
         if not self._window:
             return {}
         keys = list(self._window)[0].keys()
-        return {
-            k: float(np.mean([s.get(k, 0.0) for s in self._window]))
-            for k in keys
-        }
+        return {k: float(np.mean([s.get(k, 0.0) for s in self._window])) for k in keys}
 
     def get_trend(self, metric: str, n: int = 20) -> str:
         """Return 'improving', 'degrading', or 'stable' trend for *metric*."""

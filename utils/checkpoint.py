@@ -1,4 +1,5 @@
 """Pipeline checkpoint: persist and resume partial ingestion state."""
+
 import json
 import os
 from pathlib import Path

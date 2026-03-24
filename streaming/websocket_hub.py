@@ -1,4 +1,5 @@
 """WebSocket broadcast hub for real-time dashboard updates."""
+
 import asyncio
 import json
 from typing import Any, Dict, Set
@@ -25,7 +26,9 @@ class WebSocketHub:
             await websocket.wait_closed()
         finally:
             self._clients.discard(websocket)
-            logger.info("WebSocketHub: client disconnected (total=%d).", len(self._clients))
+            logger.info(
+                "WebSocketHub: client disconnected (total=%d).", len(self._clients)
+            )
 
     async def broadcast(self, message: Dict[str, Any]) -> None:
         """Send a JSON message to all connected clients."""

@@ -1,4 +1,5 @@
 """Generator agent: build prompt, call Bedrock, extract citations."""
+
 from agents.state import RAGState
 from utils.logger import get_logger
 

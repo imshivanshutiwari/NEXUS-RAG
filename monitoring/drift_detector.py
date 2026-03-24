@@ -1,4 +1,5 @@
 """Evidently AI embedding drift detector."""
+
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 
@@ -43,7 +44,9 @@ class EmbeddingDriftDetector:
     def set_reference(self, embeddings: np.ndarray) -> None:
         """Set the reference embedding distribution."""
         self._reference_embeddings = embeddings
-        logger.info("EmbeddingDriftDetector: reference set (%d samples).", len(embeddings))
+        logger.info(
+            "EmbeddingDriftDetector: reference set (%d samples).", len(embeddings)
+        )
 
     def compute_drift(
         self,
@@ -55,7 +58,9 @@ class EmbeddingDriftDetector:
             from evidently.metrics import EmbeddingsDriftMetric
             from evidently.report import Report
 
-            ref_df = pd.DataFrame(reference_embeddings[:, :50])  # use first 50 dims for speed
+            ref_df = pd.DataFrame(
+                reference_embeddings[:, :50]
+            )  # use first 50 dims for speed
             cur_df = pd.DataFrame(current_embeddings[:, :50])
             ref_df.columns = [str(c) for c in ref_df.columns]
             cur_df.columns = [str(c) for c in cur_df.columns]
@@ -66,7 +71,9 @@ class EmbeddingDriftDetector:
             drift_score = self._parse_drift_score(report_dict)
 
         except Exception as exc:
-            logger.warning("Evidently drift report failed: %s — using MMD fallback.", exc)
+            logger.warning(
+                "Evidently drift report failed: %s — using MMD fallback.", exc
+            )
             drift_score = self._mmd_drift(reference_embeddings, current_embeddings)
 
         status = self._status_label(drift_score)
@@ -74,13 +81,19 @@ class EmbeddingDriftDetector:
             drift_score=drift_score,
             is_drift_detected=drift_score >= self._threshold,
             status=status,
-            details={"threshold": self._threshold, "n_ref": len(reference_embeddings), "n_cur": len(current_embeddings)},
+            details={
+                "threshold": self._threshold,
+                "n_ref": len(reference_embeddings),
+                "n_cur": len(current_embeddings),
+            },
         )
 
     def monitor_query_distribution(self, new_queries: List[str]) -> DriftReport:
         """Embed new queries and compare vs reference distribution."""
         if self._reference_embeddings is None:
-            return DriftReport(drift_score=0.0, is_drift_detected=False, status="STABLE")
+            return DriftReport(
+                drift_score=0.0, is_drift_detected=False, status="STABLE"
+            )
 
         from ingestion.embedder import DocumentEmbedder
 
@@ -88,13 +101,18 @@ class EmbeddingDriftDetector:
         current_embs = embedder.embed_documents(new_queries)
         report = self.compute_drift(self._reference_embeddings, current_embs)
         if report.is_drift_detected:
-            logger.warning("EmbeddingDriftDetector: DRIFT DETECTED score=%.3f", report.drift_score)
+            logger.warning(
+                "EmbeddingDriftDetector: DRIFT DETECTED score=%.3f", report.drift_score
+            )
         return report
 
     def trigger_reindex_if_needed(self, drift_report: DriftReport) -> bool:
         """Trigger re-indexing if drift score exceeds threshold."""
         if drift_report.drift_score >= self._threshold:
-            logger.warning("EmbeddingDriftDetector: triggering re-index (drift=%.3f).", drift_report.drift_score)
+            logger.warning(
+                "EmbeddingDriftDetector: triggering re-index (drift=%.3f).",
+                drift_report.drift_score,
+            )
             try:
                 from monitoring.self_healer import SelfHealer
 
@@ -127,7 +145,7 @@ class EmbeddingDriftDetector:
         ref_mean = ref.mean(axis=0)
         cur_mean = cur.mean(axis=0)
         diff = ref_mean - cur_mean
-        return float(np.sqrt((diff ** 2).sum()))
+        return float(np.sqrt((diff**2).sum()))
 
     @staticmethod
     def _status_label(score: float) -> str:

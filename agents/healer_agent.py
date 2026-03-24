@@ -1,4 +1,5 @@
 """Healer agent: self-healing via query reformulation and fallback strategies."""
+
 from agents.state import RAGState
 from utils.logger import get_logger
 
@@ -17,7 +18,9 @@ def healer_node(state: RAGState) -> RAGState:
     """
     attempts = state.get("healing_attempts", 0)
     if attempts >= _MAX_ATTEMPTS:
-        logger.warning("HealerAgent: max attempts (%d) reached — finalising.", _MAX_ATTEMPTS)
+        logger.warning(
+            "HealerAgent: max attempts (%d) reached — finalising.", _MAX_ATTEMPTS
+        )
         state["final_answer"] = state.get("generated_answer", "")
         state["pipeline_trace"] = state.get("pipeline_trace", []) + [
             f"healer: max attempts reached — using best available answer"
@@ -34,6 +37,7 @@ def healer_node(state: RAGState) -> RAGState:
         state["query"] = new_query
     elif strategy == "expand":
         from retrieval.query_expander import QueryExpander
+
         expanded = QueryExpander().multi_query_expand(query, n=1)
         state["query"] = expanded[0] if expanded else query
     elif strategy == "switch_mode":

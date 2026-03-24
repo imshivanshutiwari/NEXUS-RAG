@@ -1,4 +1,5 @@
 """Query expander: HyDE + multi-query expansion."""
+
 from typing import List
 
 from utils.logger import get_logger
@@ -38,7 +39,9 @@ class QueryExpander:
         )
         try:
             response = self.llm.generate(prompt, max_tokens=256, temperature=0.5)
-            lines = [line.strip() for line in response.strip().splitlines() if line.strip()]
+            lines = [
+                line.strip() for line in response.strip().splitlines() if line.strip()
+            ]
             return lines[:n]
         except Exception as exc:
             logger.warning("Multi-query expansion failed: %s", exc)
@@ -75,7 +78,9 @@ class QueryExpander:
 
         # Rank by score
         ranked = sorted(all_results.values(), key=lambda d: -d.score)
-        logger.info("QueryExpander: %d unique docs from expanded retrieval.", len(ranked))
+        logger.info(
+            "QueryExpander: %d unique docs from expanded retrieval.", len(ranked)
+        )
         return [
             {
                 "doc_id": d.doc_id,

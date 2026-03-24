@@ -1,4 +1,5 @@
 """Per-stage latency tracker for the NEXUS-RAG pipeline."""
+
 import time
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -37,8 +38,12 @@ class LatencyTracker:
         if start is None:
             return 0.0
         duration_ms = (time.perf_counter() - start) * 1000.0
-        self._records.append(LatencyRecord(stage=stage, duration_ms=duration_ms, query_id=query_id))
-        logger.debug("LatencyTracker: %s=%.1fms (query=%s)", stage, duration_ms, query_id)
+        self._records.append(
+            LatencyRecord(stage=stage, duration_ms=duration_ms, query_id=query_id)
+        )
+        logger.debug(
+            "LatencyTracker: %s=%.1fms (query=%s)", stage, duration_ms, query_id
+        )
         return duration_ms
 
     def get_stage_stats(self) -> Dict[str, Dict[str, float]]:

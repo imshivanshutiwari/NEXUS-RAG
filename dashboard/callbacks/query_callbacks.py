@@ -1,4 +1,5 @@
 """Shared query callbacks registered globally."""
+
 from dash import callback, Output, Input, State
 from dashboard.theme import ACCENT, BG, TEXT
 

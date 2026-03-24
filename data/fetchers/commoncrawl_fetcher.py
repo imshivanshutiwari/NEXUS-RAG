@@ -1,4 +1,5 @@
 """CommonCrawl fetcher via the public Index API and S3 byte-range requests."""
+
 import json
 import re
 from dataclasses import dataclass, field
@@ -68,7 +69,9 @@ class CommonCrawlFetcher:
                     continue
             cache_path.write_text(json.dumps(records))
         except Exception as exc:
-            logger.warning("CommonCrawl search_index failed for '%s': %s", url_pattern, exc)
+            logger.warning(
+                "CommonCrawl search_index failed for '%s': %s", url_pattern, exc
+            )
         return records
 
     def fetch_page(self, record_info: dict) -> Optional[Document]:

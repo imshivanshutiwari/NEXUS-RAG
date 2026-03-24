@@ -1,4 +1,5 @@
 """Tests for PromptBuilder."""
+
 from generation.prompt_builder import PromptBuilder
 
 

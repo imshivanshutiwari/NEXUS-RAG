@@ -1,4 +1,5 @@
 """RAGAS evaluator: faithfulness, answer_relevancy, context_precision, context_recall."""
+
 from typing import Any, Dict, List, Optional
 
 import pandas as pd
@@ -41,7 +42,12 @@ class RAGASEvaluator:
             dataset = Dataset.from_dict(data)
             scores = evaluate(
                 dataset,
-                metrics=[faithfulness, answer_relevancy, context_precision, context_recall],
+                metrics=[
+                    faithfulness,
+                    answer_relevancy,
+                    context_precision,
+                    context_recall,
+                ],
             )
             result = scores.to_pandas().iloc[0].to_dict()
             return {

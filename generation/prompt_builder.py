@@ -1,4 +1,5 @@
 """Dynamic RAG prompt builder."""
+
 from typing import List
 
 from utils.logger import get_logger
@@ -16,7 +17,9 @@ _SYSTEM_PROMPT = (
 class PromptBuilder:
     """Build context-aware prompts for RAG generation."""
 
-    def build(self, query: str, contexts: List[str], system: str = _SYSTEM_PROMPT) -> str:
+    def build(
+        self, query: str, contexts: List[str], system: str = _SYSTEM_PROMPT
+    ) -> str:
         """Assemble the full prompt with numbered context passages."""
         if not contexts:
             return f"{system}\n\nQuestion: {query}\n\nAnswer:"

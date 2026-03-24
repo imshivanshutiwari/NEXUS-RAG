@@ -1,4 +1,5 @@
 """LangChain @tool functions used by the NEXUS-RAG agents."""
+
 from typing import Any, Dict, List
 
 from langchain_core.tools import tool
@@ -85,27 +86,45 @@ def dense_search(query: str, k: int = 20) -> List[Dict[str, Any]]:
 
 
 @tool
-def crossencoder_rerank(query: str, documents: List[Dict[str, Any]], top_k: int = 10) -> List[Dict[str, Any]]:
+def crossencoder_rerank(
+    query: str, documents: List[Dict[str, Any]], top_k: int = 10
+) -> List[Dict[str, Any]]:
     """CrossEncoder reranking of candidate documents."""
     from ingestion.indexer import ScoredDocument
     from retrieval.reranker import CrossEncoderReranker
 
-    docs = [ScoredDocument(doc_id=d["doc_id"], content=d.get("content", ""), score=d.get("score", 0.0)) for d in documents]
+    docs = [
+        ScoredDocument(
+            doc_id=d["doc_id"], content=d.get("content", ""), score=d.get("score", 0.0)
+        )
+        for d in documents
+    ]
     reranker = CrossEncoderReranker()
     results = reranker.rerank(query, docs, top_k=top_k)
-    return [{"doc_id": r.doc_id, "content": r.content, "score": r.score} for r in results]
+    return [
+        {"doc_id": r.doc_id, "content": r.content, "score": r.score} for r in results
+    ]
 
 
 @tool
-def colbert_rerank(query: str, documents: List[Dict[str, Any]], top_k: int = 5) -> List[Dict[str, Any]]:
+def colbert_rerank(
+    query: str, documents: List[Dict[str, Any]], top_k: int = 5
+) -> List[Dict[str, Any]]:
     """ColBERT late interaction reranking."""
     from ingestion.indexer import ScoredDocument
     from retrieval.colbert_reranker import ColBERTReranker
 
-    docs = [ScoredDocument(doc_id=d["doc_id"], content=d.get("content", ""), score=d.get("score", 0.0)) for d in documents]
+    docs = [
+        ScoredDocument(
+            doc_id=d["doc_id"], content=d.get("content", ""), score=d.get("score", 0.0)
+        )
+        for d in documents
+    ]
     reranker = ColBERTReranker()
     results = reranker.rerank(query, docs, top_k=top_k)
-    return [{"doc_id": r.doc_id, "content": r.content, "score": r.score} for r in results]
+    return [
+        {"doc_id": r.doc_id, "content": r.content, "score": r.score} for r in results
+    ]
 
 
 @tool
@@ -125,7 +144,9 @@ def call_bedrock(prompt: str, max_tokens: int = 2048) -> str:
 
 
 @tool
-def extract_citations(answer: str, documents: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def extract_citations(
+    answer: str, documents: List[Dict[str, Any]]
+) -> List[Dict[str, Any]]:
     """Extract citation markers [N] from answer and map to source documents."""
     from generation.citation_builder import CitationBuilder
 

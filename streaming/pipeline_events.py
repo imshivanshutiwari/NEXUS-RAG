@@ -1,4 +1,5 @@
 """Pipeline stage events: publish stage transitions to subscribers."""
+
 import asyncio
 import json
 from typing import Any, Callable, Dict, List
@@ -32,7 +33,9 @@ class PipelineEvents:
             try:
                 await q.put(event)
             except Exception as exc:
-                logger.warning("PipelineEvents: failed to publish to subscriber: %s", exc)
+                logger.warning(
+                    "PipelineEvents: failed to publish to subscriber: %s", exc
+                )
 
     async def publish_stage_start(self, stage: str, query_id: str = "") -> None:
         await self.publish(stage, {"status": "start", "query_id": query_id})

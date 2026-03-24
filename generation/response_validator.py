@@ -1,4 +1,5 @@
 """Response validator: hallucination detection via NLI-style checks."""
+
 from typing import Any, Dict, List
 
 from utils.logger import get_logger
@@ -15,9 +16,7 @@ class ResponseValidator:
     def __init__(self) -> None:
         self._nli_model = None
 
-    def validate(
-        self, answer: str, contexts: List[str]
-    ) -> Dict[str, Any]:
+    def validate(self, answer: str, contexts: List[str]) -> Dict[str, Any]:
         """
         Check if *answer* is supported by *contexts*.
         Returns a dict with:

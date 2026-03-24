@@ -1,4 +1,5 @@
 """Faithfulness scorer: NLI-based claim-level faithfulness check."""
+
 from typing import Any, Dict, List
 
 from utils.logger import get_logger
@@ -32,9 +33,7 @@ class FaithfulnessScorer:
 
         for claim in claims:
             try:
-                preds = nli(
-                    {"text": context_text, "text_pair": claim}, top_k=None
-                )
+                preds = nli({"text": context_text, "text_pair": claim}, top_k=None)
                 entail_score = next(
                     (p["score"] for p in preds if p["label"].lower() == "entailment"),
                     0.5,
@@ -57,7 +56,9 @@ class FaithfulnessScorer:
         """Split answer into individual claim sentences."""
         import re
 
-        return [s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if len(s.strip()) > 10]
+        return [
+            s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if len(s.strip()) > 10
+        ]
 
     def _get_pipeline(self):
         if self._pipeline is None:
@@ -80,4 +81,7 @@ class _KeywordNLI:
         hyp = set(inputs.get("text_pair", "").lower().split())
         overlap = len(premise & hyp) / max(len(hyp), 1)
         score = min(overlap * 2, 1.0)
-        return [{"label": "entailment", "score": score}, {"label": "contradiction", "score": 1 - score}]
+        return [
+            {"label": "entailment", "score": score},
+            {"label": "contradiction", "score": 1 - score},
+        ]

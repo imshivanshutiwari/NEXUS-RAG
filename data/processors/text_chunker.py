@@ -1,4 +1,5 @@
 """Semantic text chunker: splits documents into overlapping semantic chunks."""
+
 from dataclasses import dataclass, field
 from typing import List
 
@@ -40,7 +41,9 @@ class TextChunker:
             self.chunk_overlap = chunk_overlap
             self.strategy = strategy
 
-    def chunk(self, text: str, doc_id: str = "", metadata: dict | None = None) -> List[TextChunk]:
+    def chunk(
+        self, text: str, doc_id: str = "", metadata: dict | None = None
+    ) -> List[TextChunk]:
         """Split *text* into overlapping semantic chunks."""
         if not text.strip():
             return []

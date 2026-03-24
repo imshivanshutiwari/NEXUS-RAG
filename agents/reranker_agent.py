@@ -1,4 +1,5 @@
 """Reranker agent: CrossEncoder → top 10, ColBERT → top 5."""
+
 from typing import Any, List
 
 from agents.state import RAGState
@@ -25,7 +26,9 @@ def reranker_node(state: RAGState) -> RAGState:
 
     if not retrieved:
         state["reranked_docs"] = []
-        state["pipeline_trace"] = state.get("pipeline_trace", []) + ["reranker: no docs to rerank"]
+        state["pipeline_trace"] = state.get("pipeline_trace", []) + [
+            "reranker: no docs to rerank"
+        ]
         return state
 
     # Build ScoredDocument objects

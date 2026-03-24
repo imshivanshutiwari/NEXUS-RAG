@@ -1,4 +1,5 @@
 """LangGraph StateGraph: 6-node agentic RAG pipeline."""
+
 from typing import Literal
 
 from langgraph.graph import StateGraph, END
@@ -90,5 +91,7 @@ class NEXUSRAGGraph:
         }
         logger.info("NEXUSRAGGraph: running pipeline for query='%s...'", query[:60])
         result = self.graph.invoke(initial_state)
-        logger.info("NEXUSRAGGraph: pipeline complete. trace=%s", result.get("pipeline_trace"))
+        logger.info(
+            "NEXUSRAGGraph: pipeline complete. trace=%s", result.get("pipeline_trace")
+        )
         return result

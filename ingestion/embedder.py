@@ -1,4 +1,5 @@
 """Document embedder: Cohere Embed v3 primary + sentence-transformers fallback."""
+
 import os
 from typing import List
 
@@ -79,7 +80,9 @@ class DocumentEmbedder:
             logger.info("Loaded local model: %s", _LOCAL_MODEL)
         return self._local_model
 
-    def _embed_texts(self, texts: List[str], input_type: str = "search_document") -> np.ndarray:
+    def _embed_texts(
+        self, texts: List[str], input_type: str = "search_document"
+    ) -> np.ndarray:
         if self._use_cohere and self._cohere_client is not None:
             try:
                 response = self._cohere_client.embed(
@@ -96,7 +99,8 @@ class DocumentEmbedder:
         embeddings = np.array(embeddings, dtype=np.float32)
         if embeddings.shape[1] < _EMBED_DIM:
             pad = np.zeros(
-                (embeddings.shape[0], _EMBED_DIM - embeddings.shape[1]), dtype=np.float32
+                (embeddings.shape[0], _EMBED_DIM - embeddings.shape[1]),
+                dtype=np.float32,
             )
             embeddings = np.concatenate([embeddings, pad], axis=1)
         elif embeddings.shape[1] > _EMBED_DIM:

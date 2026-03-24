@@ -1,4 +1,5 @@
 """Pydantic request/response schemas for the NEXUS-RAG API."""
+
 from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, Field

@@ -1,4 +1,5 @@
 """Metadata extractor: title, date, source from raw documents."""
+
 import re
 from dataclasses import dataclass, field
 from typing import Optional
@@ -37,7 +38,11 @@ class MetadataExtractor:
             authors=authors,
             language=language,
             word_count=word_count,
-            extra={k: v for k, v in hint.items() if k not in ("title", "date", "source", "url", "authors")},
+            extra={
+                k: v
+                for k, v in hint.items()
+                if k not in ("title", "date", "source", "url", "authors")
+            },
         )
 
     def _extract_title(self, content: str) -> str:

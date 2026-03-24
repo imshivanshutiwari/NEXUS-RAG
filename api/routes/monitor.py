@@ -1,4 +1,5 @@
 """Monitor endpoint."""
+
 from fastapi import APIRouter
 from api.schemas import MonitorResponse
 from monitoring.quality_monitor import QualityMonitor
@@ -6,6 +7,7 @@ from monitoring.latency_tracker import get_tracker
 
 router = APIRouter()
 _quality = QualityMonitor()
+
 
 @router.get("/", response_model=MonitorResponse)
 def get_monitor():

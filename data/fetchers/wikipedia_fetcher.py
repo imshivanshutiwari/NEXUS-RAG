@@ -1,4 +1,5 @@
 """Wikipedia fetcher using the real Wikipedia API."""
+
 import json
 import os
 import time
@@ -39,7 +40,9 @@ class WikipediaFetcher:
     # Public API
     # ------------------------------------------------------------------
 
-    def fetch_articles(self, topics: List[str], n_per_topic: int = 50) -> List[Document]:
+    def fetch_articles(
+        self, topics: List[str], n_per_topic: int = 50
+    ) -> List[Document]:
         """Fetch up to *n_per_topic* Wikipedia articles per topic."""
         documents: List[Document] = []
         for topic in topics:
@@ -82,7 +85,9 @@ class WikipediaFetcher:
             self._save_cache(cache_path, doc)
             return doc
         except Exception as exc:
-            logger.warning("Wikipedia fetch_full_article failed for %s: %s", page_id, exc)
+            logger.warning(
+                "Wikipedia fetch_full_article failed for %s: %s", page_id, exc
+            )
             return None
 
     def fetch_category(self, category: str, depth: int = 2) -> List[Document]:

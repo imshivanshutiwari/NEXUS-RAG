@@ -1,4 +1,5 @@
 """Citation builder: extract [N] markers from answers and map to source documents."""
+
 import re
 from typing import Any, Dict, List
 
@@ -18,9 +19,7 @@ class CitationBuilder:
         and map them to the corresponding *documents*.
         Returns a list of citation dicts.
         """
-        citation_numbers = sorted(
-            {int(n) for n in re.findall(r"\[(\d+)\]", answer)}
-        )
+        citation_numbers = sorted({int(n) for n in re.findall(r"\[(\d+)\]", answer)})
         citations: List[Dict[str, Any]] = []
         for num in citation_numbers:
             idx = num - 1  # [1] → index 0

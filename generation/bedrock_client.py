@@ -1,4 +1,5 @@
 """AWS Bedrock Claude-3-Sonnet client."""
+
 import json
 import os
 from typing import Iterator

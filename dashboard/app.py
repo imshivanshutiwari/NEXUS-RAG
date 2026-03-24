@@ -1,4 +1,5 @@
 """NEXUS-RAG Dash dashboard entry point."""
+
 import dash
 import dash_bootstrap_components as dbc
 from dash import html, dcc

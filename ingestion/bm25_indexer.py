@@ -1,4 +1,5 @@
 """BM25 sparse indexer using rank_bm25."""
+
 import pickle
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
@@ -42,9 +43,7 @@ class BM25Indexer:
             return []
         tokens = self._tokenize(query)
         scores = self._bm25.get_scores(tokens)
-        ranked = sorted(
-            zip(self._doc_ids, scores.tolist()), key=lambda x: -x[1]
-        )
+        ranked = sorted(zip(self._doc_ids, scores.tolist()), key=lambda x: -x[1])
         return ranked[:k]
 
     def get_scores_dict(self, query: str) -> Dict[str, float]:

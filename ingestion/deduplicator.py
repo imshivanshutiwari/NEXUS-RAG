@@ -1,4 +1,5 @@
 """MinHash LSH deduplicator for near-duplicate document removal."""
+
 from typing import Dict, List, Set, Tuple
 
 from utils.logger import get_logger
@@ -15,7 +16,9 @@ class Deduplicator:
     Two documents are considered duplicates if their Jaccard similarity ≥ threshold.
     """
 
-    def __init__(self, threshold: float = _THRESHOLD, num_perm: int = _NUM_PERM) -> None:
+    def __init__(
+        self, threshold: float = _THRESHOLD, num_perm: int = _NUM_PERM
+    ) -> None:
         self.threshold = threshold
         self.num_perm = num_perm
         self._lsh = None
@@ -30,9 +33,7 @@ class Deduplicator:
         except Exception as exc:
             logger.warning("datasketch not available: %s — dedup disabled.", exc)
 
-    def deduplicate(
-        self, documents: List[Dict[str, str]]
-    ) -> List[Dict[str, str]]:
+    def deduplicate(self, documents: List[Dict[str, str]]) -> List[Dict[str, str]]:
         """Return documents with near-duplicates removed. Keeps first occurrence."""
         if self._lsh is None:
             return documents

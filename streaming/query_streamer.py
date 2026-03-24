@@ -1,4 +1,5 @@
 """Server-Sent Events (SSE) streaming for RAG query responses."""
+
 import asyncio
 import json
 from typing import AsyncIterator
@@ -48,7 +49,7 @@ class QueryStreamer:
                 }
             )
             yield f"data: {meta}\n\n"
-            yield "data: {\"type\": \"done\"}\n\n"
+            yield 'data: {"type": "done"}\n\n'
 
         except Exception as exc:
             error = json.dumps({"type": "error", "message": str(exc)})

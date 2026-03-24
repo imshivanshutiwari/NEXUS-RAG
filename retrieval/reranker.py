@@ -1,4 +1,5 @@
 """CrossEncoder reranker using ms-marco-MiniLM-L-6-v2."""
+
 from dataclasses import dataclass, field
 from typing import List
 
@@ -46,9 +47,7 @@ class CrossEncoderReranker:
         model = self._get_model()
         pairs = [[query, doc.content] for doc in documents]
         scores = model.predict(pairs)
-        ranked = sorted(
-            zip(documents, scores.tolist()), key=lambda x: -x[1]
-        )
+        ranked = sorted(zip(documents, scores.tolist()), key=lambda x: -x[1])
         results = []
         for doc, score in ranked[:top_k]:
             results.append(

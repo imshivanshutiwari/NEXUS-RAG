@@ -1,4 +1,5 @@
 """Dash bootstrap theme and shared style constants."""
+
 import dash_bootstrap_components as dbc
 
 THEME = dbc.themes.DARKLY

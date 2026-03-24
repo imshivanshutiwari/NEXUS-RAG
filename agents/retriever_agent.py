@@ -1,4 +1,5 @@
 """Retriever agent: orchestrates hybrid retrieval + query expansion."""
+
 from typing import Any, Dict, List
 
 from agents.state import RAGState

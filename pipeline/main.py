@@ -1,4 +1,5 @@
 """End-to-end pipeline entry: imports and uses all modules."""
+
 import time
 from typing import Any, Dict
 

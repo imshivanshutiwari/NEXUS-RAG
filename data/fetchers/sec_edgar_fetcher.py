@@ -1,4 +1,5 @@
 """SEC EDGAR fetcher using real public SEC APIs."""
+
 import json
 import re
 import time
@@ -35,9 +36,7 @@ class SECEDGARFetcher:
         self.cache_dir = cache_dir or _CACHE_DIR
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.session = requests.Session()
-        self.session.headers.update(
-            {"User-Agent": "NEXUS-RAG research@nexus-rag.ai"}
-        )
+        self.session.headers.update({"User-Agent": "NEXUS-RAG research@nexus-rag.ai"})
         self._ticker_to_cik: dict = {}
 
     # ------------------------------------------------------------------
@@ -61,7 +60,9 @@ class SECEDGARFetcher:
 
     def search_filings(self, query: str) -> List[Document]:
         """Full-text search SEC EDGAR for filings matching *query*."""
-        cache_path = self.cache_dir / f"search_{re.sub(r'[^a-z0-9]', '_', query.lower())}.json"
+        cache_path = (
+            self.cache_dir / f"search_{re.sub(r'[^a-z0-9]', '_', query.lower())}.json"
+        )
         if cache_path.exists():
             return [Document(**d) for d in json.loads(cache_path.read_text())]
 

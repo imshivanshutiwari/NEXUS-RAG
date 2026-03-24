@@ -1,4 +1,5 @@
 """Document store: manage document lifecycle (fetch, cache, list, delete)."""
+
 import argparse
 import json
 from dataclasses import dataclass, field
@@ -59,7 +60,9 @@ class DocumentStore:
                 if source is None or doc.source == source:
                     docs.append(doc)
             except Exception as exc:
-                logger.warning("DocumentStore.list_documents: bad file %s: %s", path, exc)
+                logger.warning(
+                    "DocumentStore.list_documents: bad file %s: %s", path, exc
+                )
         return docs
 
     def delete(self, doc_id: str) -> bool:

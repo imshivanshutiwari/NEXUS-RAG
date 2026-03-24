@@ -1,12 +1,27 @@
 """Tests for QualityMonitor and AlertManager."""
+
 from monitoring.quality_monitor import QualityMonitor
 from monitoring.alert_manager import AlertManager
 
 
 def test_record_and_means():
     mon = QualityMonitor()
-    mon.record({"faithfulness": 0.9, "answer_relevancy": 0.8, "context_precision": 0.7, "context_recall": 0.6})
-    mon.record({"faithfulness": 0.7, "answer_relevancy": 0.6, "context_precision": 0.5, "context_recall": 0.4})
+    mon.record(
+        {
+            "faithfulness": 0.9,
+            "answer_relevancy": 0.8,
+            "context_precision": 0.7,
+            "context_recall": 0.6,
+        }
+    )
+    mon.record(
+        {
+            "faithfulness": 0.7,
+            "answer_relevancy": 0.6,
+            "context_precision": 0.5,
+            "context_recall": 0.4,
+        }
+    )
     means = mon.get_rolling_means()
     assert abs(means["faithfulness"] - 0.8) < 0.01
 
@@ -14,7 +29,14 @@ def test_record_and_means():
 def test_threshold_check():
     mon = QualityMonitor()
     for _ in range(5):
-        mon.record({"faithfulness": 0.5, "answer_relevancy": 0.4, "context_precision": 0.3, "context_recall": 0.3})
+        mon.record(
+            {
+                "faithfulness": 0.5,
+                "answer_relevancy": 0.4,
+                "context_precision": 0.3,
+                "context_recall": 0.3,
+            }
+        )
     alerts = mon.check_thresholds()
     assert "faithfulness" in alerts
 
